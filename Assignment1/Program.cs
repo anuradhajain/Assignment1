@@ -7,14 +7,14 @@ namespace Assignment1
         static void Main(string[] args)
         {
             try
-            {/*
+            {
                 // the value of x and y
                 int x = 5; int y = 15;
 
                 // Calling the method that finds all prime numbers between x and y
                 Console.WriteLine("The prime numbers are: ");
                 printPrimeNumbers(x, y);
-                Console.WriteLine("\n\n");
+                Console.WriteLine("\n");
 
                 // the value of n1
                 int n1 = 5;
@@ -22,19 +22,29 @@ namespace Assignment1
                 // calling the method to get series result. n1 is passed as an arguement
                 double r1 = getSeriesResult(n1);
                 Console.WriteLine("The sum of the series is: " + r1);
+                Console.WriteLine("\n");
 
-                // value of n
-                int n = 5;
+                // value of n2
+                long n2 = 15;
 
-                // calling the method to print the star pattern. n is passed as an argument
-                printTriangle(n);
-                */
+                // calling the method to convert decimal to binary. n2 is passed as an arguement
+                long r2 = decimalToBinary(n2);
+                Console.WriteLine("Binary conversion of the decimal number " + n2 + " is: " + r2);
+                Console.WriteLine("\n");
+
                 // value of n3
                 long n3 = 1111;
 
                 // calling method to convert from binary to decimal. sending n3 as argument to the called function
                 long r3 = binaryToDecimal(n3);
                 Console.WriteLine("Decimal conversion of the binary number " + n3 + " is: " + r3);
+                Console.WriteLine("\n");
+
+                // value of n
+                int n = 5;
+
+                // calling the method to print the star pattern. n is passed as an argument
+                printTriangle(n);
 
                 // Displaying exit message and taking user input to exit application
                 Console.WriteLine("\nPress any key to exit ");
@@ -125,6 +135,38 @@ namespace Assignment1
 
         } // end of factorial(int n)
 
+        // this method converts decimal to binary
+        public static long decimalToBinary(long n)
+        {
+            // initializing result variable s to 0
+            long s = 0;
+            // start of try block
+            try
+            {
+                // setting counter to 0
+                int count = 0;
+                // while loop to run till n > 0
+                while (n > 0)
+                {
+                    long mod = n % 2; // getting the modulus of 2
+                    long prod = (long)Math.Pow(10, count) * mod; // multiplying the last character to 10^0, 10^1, respectively for each iteration. hence the counter 
+                    s = s + prod; // adding all the products and storing the sum in s
+
+                    count++; // incrementing the counter
+                    n = n / 2; // dividing n by 2
+                } // end of while
+            } // end of try
+
+            // This block is executed when error occurs in the try block else not
+            catch
+            {
+                Console.WriteLine("Exception occured while computing decimalToBinary()");
+            } // end of catch
+
+            return s;
+        }
+
+
         // this method converts binary to decimal
         public static long binaryToDecimal(long n)
         {
@@ -135,7 +177,7 @@ namespace Assignment1
             {
                 // setting counter to 0
                 int count = 0;
-                // while loop to run till n > 0. So runs as many yimes as there are characters in n
+                // while loop to run till n > 0. So runs as many times as there are characters in n
                 while(n > 0)
                 {                    
                     long charAtLastPosition = n % 10; // getting the last character of the number n
