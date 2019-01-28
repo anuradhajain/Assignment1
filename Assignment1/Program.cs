@@ -7,7 +7,7 @@ namespace Assignment1
         static void Main(string[] args)
         {
             try
-            { 
+            {
                 // the value of x and y
                 int x = 5; int y = 15;
 
@@ -16,12 +16,19 @@ namespace Assignment1
                 printPrimeNumbers(x, y);
                 Console.WriteLine("\n\n");
 
+                // the value of n1
+                int n1 = 5;
+
+                // calling the method to get series result. n1 is passed as an arguement
+                double r1 = getSeriesResult(n1);
+                Console.WriteLine("The sum of the series is: " + r1);
+
                 // value of n
                 int n = 5;
 
-                // calling the method to print the star pattern
+                // calling the method to print the star pattern. n is passed as an argument
                 printTriangle(n);
-                
+             
                 // Displaying exit message and taking user input to exit application
                 Console.WriteLine("\nPress any key to exit ");
                 Console.ReadKey(true);
@@ -69,7 +76,49 @@ namespace Assignment1
 
         }  // end of Printprimenumber method
 
-        // method to print star pattern. Number of rpws in the pattern is sent from the main method as the argument. Nothing is returned to the main method
+        // this method calculates the result of a series till n numbers. n is taken as an argument from the calling function and the result is returned to the calling function
+        public static double getSeriesResult(int n)
+        {
+            double x = 0;
+
+            // for loop to calculate the result of the series till n
+            for (int i =1; i <= n; i++)
+            {
+                // using the modules of 2 equal equal 0 logic to determine if i is even or odd and then assigning + or - sign before it
+                if (i % 2 == 0)
+                {
+                    x = x - factorial(i) / (i + 1);
+                } // end of if(i % 2 == 0)
+                else               
+                {
+                    x = x + factorial(i) / (i + 1);
+                    
+                } // end of else                
+
+            } // end of for loop i
+
+            // returning the result of the series to the calling function rounded upto 3 decimal places
+            return Math.Round(x,3);
+
+        } // end of method getSeriesResult(int n)
+
+        // This method finds the factorial of n numbers. n is taken as an argument from the calling function and factorial is returned to the calling function
+        public static double factorial(int n)
+        {
+            double fact = 1;
+
+            // for loop to calculate the factorial of n numbers
+            for (int i  = 1; i <= n; i++)
+            {
+                fact = fact * i;
+            } // end of for loop i
+
+            // return the calculated factorial value to the calling function
+            return fact;
+
+        } // end of factorial(int n)
+
+        // method to print star pattern. Number of rows in the pattern is sent from the main method as the argument. Nothing is returned to the main method
         public static void printTriangle(int n)
         {
             // for loop of i till n, rows in a matrix
@@ -105,6 +154,5 @@ namespace Assignment1
             } //end of for loop i
 
         } // end of method printTriangle(int n)
-
     } // end of class
 } // end of namespace
