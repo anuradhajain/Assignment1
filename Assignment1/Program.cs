@@ -7,7 +7,7 @@ namespace Assignment1
         static void Main(string[] args)
         {
             try
-            {
+            {/*
                 // the value of x and y
                 int x = 5; int y = 15;
 
@@ -28,7 +28,14 @@ namespace Assignment1
 
                 // calling the method to print the star pattern. n is passed as an argument
                 printTriangle(n);
-             
+                */
+                // value of n3
+                long n3 = 1111;
+
+                // calling method to convert from binary to decimal. sending n3 as argument to the called function
+                long r3 = binaryToDecimal(n3);
+                Console.WriteLine("Decimal conversion of the binary number " + n3 + " is: " + r3);
+
                 // Displaying exit message and taking user input to exit application
                 Console.WriteLine("\nPress any key to exit ");
                 Console.ReadKey(true);
@@ -117,6 +124,38 @@ namespace Assignment1
             return fact;
 
         } // end of factorial(int n)
+
+        // this method converts binary to decimal
+        public static long binaryToDecimal(long n)
+        {
+            // initializing the result variable s to 0
+            long s = 0;
+            // start of try block
+            try
+            {
+                // setting counter to 0
+                int count = 0;
+                // while loop to run till n > 0. So runs as many yimes as there are characters in n
+                while(n > 0)
+                {                    
+                    long charAtLastPosition = n % 10; // getting the last character of the number n
+                    long prod = (long)Math.Pow(2, count) * charAtLastPosition; // multiplying the last character to 2^0, 2^1, respectively for each iteration. hence the counter 
+                    s = s + prod; // adding all the products and storing the sum in s
+                    n = n / 10; // dropping the last character by dividing n by 10
+                    count++; // incrementing the counter
+                } // end of while 
+            } // end of try
+
+            // This block is executed when error occurs in the try block else not
+            catch
+            {
+                Console.WriteLine("Exception occured while computing decimalToBinary()");
+            } // end of catch
+
+            // returning the result to the calling function
+            return s;
+        }
+
 
         // method to print star pattern. Number of rows in the pattern is sent from the main method as the argument. Nothing is returned to the main method
         public static void printTriangle(int n)
